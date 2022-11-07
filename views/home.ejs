@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Application</title>
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: #ffffff;
+            font-family: 'Manrope', sans-serif;
+        }
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        nav{
+            text-align: center;
+            background-color: rgb(50, 50, 50);
+            height: 50px;
+            color: #fff;
+            line-height: 50px;
+        }
+        td,
+        th {
+            border: 1px solid #000;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #dddddd;
+        }
+        h3{
+            margin: 15px 0px;
+            text-decoration: underline;
+        }
+        input[type="text"]{
+            width: 140px;
+            padding: 7px;
+        }
+        button{
+            cursor: pointer;
+            width: 80px;
+            height: 33px;
+            font-weight: bold;
+            background-color: #dddddd;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h2>Employee Management System</h2>
+    </nav>
+
+    <h3>Employee Details</h3>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Post</th>
+            <th>Salary</th>
+            <th>Delete</th>
+        </tr>
+        <% data.forEach(element=> { %>
+            <tr>
+                <td><%= element.employeeId %></td>
+                <td><%= element.employeeName %></td>
+                <td><%= element.employeePost %></td>
+                <td><%= element.employeeSalary %></td>
+                <td>
+                    <form action="/delete" method="post">
+                        <input type="text" style="display: none;" name="employeeId"
+                         value="<%= element.employeeId %>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+
+    <h3>Add Employee</h3>
+    <form action="/" method="post">
+        <input type="text" placeholder="Employee Name" name="employeeName">
+        <input type="text" placeholder="Employee Post" name="employeePost">
+        <input type="text" placeholder="Employee Salary" name="employeeSalary">
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Update Employee Details</h3>
+    <form action="/update" method="post">
+        <input type="text" placeholder="Employee Id" name="employeeId">
+        <input type="text" placeholder="Employee Name" name="employeeName">
+        <input type="text" placeholder="Employee Post" name="employeePost">
+        <input type="text" placeholder="Employee Salary" name="employeeSalary">
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+</html>
